@@ -23,4 +23,7 @@ def intdetector(i):
 
 def floatdetector(f):
     if not isinstance(f, float):
-        raise argparse.ArgumentTypeError('An input was expected to be a float')
+        if isinstance(f, int):
+            f = float(f)
+        else:
+            raise argparse.ArgumentTypeError('An input was expected to be a float')
