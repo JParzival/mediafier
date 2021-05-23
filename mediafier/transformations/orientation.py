@@ -1,6 +1,5 @@
 import cv2
 import imutils
-from imgTransPy import utils
 
 from ..utils.utils import intdetector, stringdetector, str2bool
 

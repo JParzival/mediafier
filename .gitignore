@@ -1,5 +1,5 @@
 venv
-imgTransPy.egg-info
+mediafier.egg-info
 .pytest_cache
 test_imgs
 */__pycache__

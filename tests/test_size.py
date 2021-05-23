@@ -1,6 +1,6 @@
 import cv2
 import os 
-from imgTransPy.transformations.size import resize, crop
+from mediafier.transformations.size import resize, crop
 
 SRC_IMG_DIR = os.path.join('test_imgs', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'transformations', 'size')

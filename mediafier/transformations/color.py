@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-from imgTransPy import utils
 
 from ..utils.utils import floatdetector, stringdetector
 

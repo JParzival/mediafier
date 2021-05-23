@@ -1,6 +1,6 @@
-# imgTransPy
+# mediafier
 
-Python library that will help you to with image transformation and image augmentation for machine learning and artificial vision projects. Enables the user to modify images for different purposes, as increasing a dataset or just changing some image properties.
+Python library that helps with media (image/video) transformation and augmentation for machine learning and artificial vision projects. Enables the user to modify media for different purposes, as increasing a dataset or just changing some properties.
 
 <br/>
 
@@ -11,10 +11,10 @@ To install the library, read the following lines:
 ### Pip
 
 ```
-pip install imgTransPy
+pip install mediafier
 ```
 
-To uninstall the library, just execute ```pip uninstall imgTransPy```
+To uninstall the library, just execute ```pip uninstall mediafier```
 
 <br/>
 <br/>
@@ -51,11 +51,11 @@ If you are going to cite this project in your scientific publication, please, us
 ```
 @misc{imgTransPy,
     author = {Jorge de Andres Gonzalez},
-    title = {imgTransPy - A library for image transformation and data augmentation},
+    title = {mediafier - A library for image/video transformation and data augmentation},
     year = {2021},
     publisher = {GitHub},
     journal = {GitHub Repository},
-    howpublished = {\url{https://github.com/JParzival/imgTransPy}},
+    howpublished = {\url{https://github.com/JParzival/mediafier}},
 }
 ```
 
