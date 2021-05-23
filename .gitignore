@@ -1,1 +1,6 @@
 venv
+imgTransPy.egg-info
+.pytest_cache
+test_imgs
+*/__pycache__
+*/*/__pycache__
