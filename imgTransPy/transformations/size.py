@@ -79,8 +79,7 @@ def resize(img, ratio=100, size=None, interpolation=None):
 
 def crop(img, x, y, w, h, fill=False):
     """
-    This function retrieves the image sent by the user resized with the ratio or the size inputted by the user.
-    The ratio has priority over the size in case that it is modified from the default value.
+    This function retrieves the image sent by the user cropped with the coordinates that the user inputs.
 
     Args:
         img (:obj: array, mandatory): 
@@ -102,7 +101,7 @@ def crop(img, x, y, w, h, fill=False):
 
     Raises:
         ValueError: Raised if any of the values of the size is not positive.
-        ArgumentTypeError: Raised if any of the values of the size tuple is not an int.
+        ArgumentTypeError: Raised if any of the values of the is not an int or the fill is not a bool.
     """
 
     for n in [x, y, w, h]:
