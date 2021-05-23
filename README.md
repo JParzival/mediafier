@@ -49,7 +49,7 @@ Also, feel free to make pull requests to the project. Creating such a big librar
 If you are going to cite this project in your scientific publication, please, use the following piece of text to make the citation:
 
 ```
-@misc{imgTransPy,
+@misc{mediafier,
     author = {Jorge de Andres Gonzalez},
     title = {mediafier - A library for image/video transformation and data augmentation},
     year = {2021},
