@@ -35,7 +35,7 @@ To uninstall the library, just execute ```pip uninstall mediafier```
 <br/>
 <br/>
 
-## Features
+## 💡 Features
 
 TODO
 
@@ -56,6 +56,39 @@ As this is an open-source project it is open to contributions, bug reports, bug 
 The issues tab is completely open, so don't hesitate posting if you have any issue or you can solve some.
 
 Also, feel free to make pull requests to the project. Creating such a big library requires many hands helping, so help is appreciated!
+
+If you want to make a PR, please follow these steps:
+
+* Create, in the issues tab, a new bug or enhancement.
+* In the issue, propose yourself to enhace the solution.
+* Prepare the code for that enhancement and send the PR following this structure:
+    ``` <what you have done> (fix/closes #<number of the issue>)```
+* Wait for it to be published :)
+
+<br/>
+<br/>
+
+## Main contributors
+
+<table>
+  <tr>
+    <td align="center">
+    <a href="https://www.jparzival.com">
+      <img src="https://avatars.githubusercontent.com/u/33935947?v=4" width="150px;" alt="JParzival"/><br/>
+      <sub><b>Jorge de Andrés</b></sub>
+    </a>
+    <br/>
+    <a href="" title="Author">👑</a>
+    <a href="" title="Reviews the Project">👀</a>
+    <a href="" title="Developer">🔧</a>
+    <a href="" title="Mantains the project">🚧</a>
+    <a href="" title="Answering Questions">💬</a>
+    <a href="" title="Talks">📢</a> 
+    <a href="" title="Documentation">📖</a> 
+    </td>
+  </tr>
+</table>
+
 
 <br/>
 <br/>
@@ -80,7 +113,7 @@ If you are going to cite this project in your scientific publication, please, us
 
 ## How to contact with the author?
 
-Contact me through my profiles:
+Contact the author through his profiles:
 
 * LinkedIn: [Jorge de Andrés](https://linkedin.com/in/jorgedeandres97)
 * GitHub: [JParzival](https://github.com/JParzival)
