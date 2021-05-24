@@ -3,12 +3,12 @@ import os
 from mediafier.image.color import modify_contrast, modify_brightness
 
 SRC_IMG_DIR = os.path.join('test_imgs', 'imgs_src_test')
-SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'transformations', 'color')
+SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'image', 'color')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)
 
-def test_transformation_color_contrast():
+def test_image_color_contrast():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
     """Transform contrast default"""
@@ -20,8 +20,8 @@ def test_transformation_color_contrast():
     """Transform contrast CLAHE"""
     cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_contrast_1_CLAHE.png'), modify_contrast(img, 1,    "CLAHE"))
     cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_contrast_3_CLAHE.png'), modify_contrast(img, 2,    "CLAHE"))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_contrast_05_CLAHE.png'), modify_contrast(img, 0.5, "CLAHE"))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_contrast_0_CLAHE.png'), modify_contrast(img, 0, "CLAHE"))
+    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_contrast_05_CLAHE.png'),modify_contrast(img, 0.5,  "CLAHE"))
+    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_contrast_0_CLAHE.png'), modify_contrast(img, 0,    "CLAHE"))
     
     """Failure example"""
     
@@ -30,7 +30,7 @@ def test_transformation_color_contrast():
     #modify_contrast(img, -1)
 
 
-def test_transformation_color_brightness():
+def test_image_color_brightness():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
     """Transform brightness"""

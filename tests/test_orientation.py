@@ -3,12 +3,12 @@ import os
 from mediafier.image.orientation import flip, rotate
 
 SRC_IMG_DIR = os.path.join('test_imgs', 'imgs_src_test')
-SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'transformations', 'orientation')
+SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'image', 'orientation')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)
 
-def test_transformation_orientation_flip():
+def test_image_orientation_flip():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
     cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_flip_h.png'), flip(img, 'horizontal'))
@@ -18,7 +18,7 @@ def test_transformation_orientation_flip():
     """Failure example"""
     #img_flip_b = flip(img, 1)
 
-def test_transformation_orientation_rotation():
+def test_image_orientation_rotation():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
     """Easy rotations"""

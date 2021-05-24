@@ -42,3 +42,54 @@ def crop(img, x, y, w, h, fill=False):
         img = img[y:y+h, x:x+w]
         return cv2.copyMakeBorder(img, y, org_h-(y+h), x, org_w-(x+w), cv2.BORDER_CONSTANT, 0)
 
+
+def slice(img, rows=2, cols=2):
+    """
+    This function retrieves the image sent by the user sliced in several images, depending on the rows and cols that the user inputs.
+
+    Args:
+        img (:obj: array, mandatory): 
+            Image to slice.
+        rows (:obj: int, mandatory): 
+            Number of rows that will slice the image.
+            Default is 2.
+        cols (:obj: int, mandatory): 
+            Number of columns that will slice the image.
+            Default is 2.
+
+    Returns:
+        :obj: array[array]:
+            The resulting object an array with the images. They will be ordered by from the up-left one to the bottom-right one,
+            following a first row - later column fashion.
+
+    Raises:
+        ValueError: Raised if any of the values of the size is not positive and over zero.
+        ArgumentTypeError: Raised if any of the values of the is not an int or the fill is not a bool.
+    """
+    
+    for n in [rows, cols]:
+        intdetector(n)
+        if n <= 0:
+            raise ValueError("All values must be positive and over zero")
+
+    if rows == 1 and cols == 1:
+        return [img]
+
+    height, width = img.shape[0], img.shape[1]
+
+    height_chunk = height/rows
+    width_chunk = width/cols
+
+    sliced = []
+    w, h = 0, 0
+    while h < height:
+        while w < width:
+            sliced.append(crop(img, int(w), int(h), int(width_chunk), int(height_chunk), False))
+            w += width_chunk
+        w = 0
+        h += height_chunk
+    return sliced
+            
+
+
+    

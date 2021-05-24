@@ -3,12 +3,12 @@ import os
 from mediafier.image.size import resize
 
 SRC_IMG_DIR = os.path.join('test_imgs', 'imgs_src_test')
-SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'transformations', 'size')
+SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'image', 'size')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)
 
-def test_transformation_size_resize():
+def test_image_size_resize():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
     """Resize by ratio"""
