@@ -1,6 +1,6 @@
 import cv2
 import os 
-from mediafier.transformations.orientation import flip, rotate
+from mediafier.image.orientation import flip, rotate
 
 SRC_IMG_DIR = os.path.join('test_imgs', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'transformations', 'orientation')
