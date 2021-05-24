@@ -6,7 +6,8 @@ from ..utils.utils import floatdetector, stringdetector
 
 def modify_contrast(img, value=1, method='default'):
     """
-    This function retrieves an image with the contrast modified.
+    This function retrieves an image with the contrast modified from an image.
+    In case of using the CLAHE method, the image must be in the BGR colorspace.
 
     Args:
         img (:obj: array, mandatory): 
