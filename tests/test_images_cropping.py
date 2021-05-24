@@ -11,17 +11,59 @@ if not os.path.exists(SAVE_IMG_DIR):
 def test_image_cropping_crop():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
-    """Crops"""
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_crop_100_100_300_300_fill=False.png'), crop(img, 100, 100, 300, 300))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_crop_100_100_100_400_fill=False.png'), crop(img, 0, 0, 100, 400))
+    params_nofill=[
+        {
+            'image': img,
+            'x': 100,
+            'y': 100,
+            'w': 300,
+            'h': 300,
+            'name': 'img_crop_100_100_300_300_fill=False.png'
+        },
+        {
+            'image': img,
+            'x': 0,
+            'y': 0,
+            'w': 100,
+            'h': 400,
+            'name': 'img_crop_0_0_100_400_fill=False.png'
+        }
+    ]
 
-    """Crops with fill"""
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_crop_100_100_300_300_fill=True.png'), crop(img, 100, 100, 300, 300, True))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_crop_100_100_100_400_fill=True.png'), crop(img, 0, 0, 100, 400, True))
+    params_fill=[
+        {
+            'image': img,
+            'x': 100,
+            'y': 100,
+            'w': 300,
+            'h': 300,
+            'fill': True,
+            'name': 'img_crop_100_100_300_300_fill=True.png'
+        },
+        {
+            'image': img,
+            'x': 100,
+            'y': 100,
+            'w': 100,
+            'h': 400,
+            'fill': True,
+            'name': 'img_crop_100_100_100_400_fill=True.png'
+        },
+        {                                                       # This one should return a black image
+            'image': img,
+            'x': 100,
+            'y': 100,
+            'w': 0,
+            'h': 300,
+            'fill': True,
+            'name': 'img_crop_100_100_0_300_fill=True.png'
+        }
+    ]
 
-    """Crops with 0 in w or h -> Returns black image"""
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_crop_100_100_0_300_fill=True.png'), crop(img, 100, 100, 0, 300, True))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_crop_100_100_100_0_fill=True.png'), crop(img, 0, 0, 100, 0, True))
+    for param in params_nofill:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, param['name']), crop(param['image'], param['x'], param['y'], param['w'], param['h']))
+    for param in params_fill:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, param['name']), crop(param['image'], param['x'], param['y'], param['w'], param['h'], param['fill']))
 
     """Failure example"""
     #crop(img, -1, -1, 1, 1)
@@ -40,38 +82,43 @@ def test_image_cropping_slice():
         cv2.imwrite(os.path.join(SAVE_IMG_DIR, f'img_slice_default_{i}.png'), image)
         i += 1
 
-    """One x One slice"""
-    images = slice(img, 1, 1)
-    i = 0
-    for image in images:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f'img_slice_1x1_{i}.png'), image)
-        i += 1
+    params=[
+        {
+            'image': img,
+            'rows': 1,
+            'cols': 1
+        },
+        {
+            'image': img,
+            'rows': 3,
+            'cols': 3
+        },
+        {
+            'image': img,
+            'rows': 4,
+            'cols': 4
+        },
+        {
+            'image': img,
+            'rows': 1,
+            'cols': 3
+        },
+        {
+            'image': img,
+            'rows': 2,
+            'cols': 1
+        }
+    ]
 
-    """Other"""
-    images = slice(img, 3, 3)
-    i = 0
-    for image in images:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f'img_slice_3x3_{i}.png'), image)
-        i += 1
-
-    images = slice(img, 4, 4)
-    i = 0
-    for image in images:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f'img_slice_4x4_{i}.png'), image)
-        i += 1
-
-    images = slice(img, 1, 3)
-    i = 0
-    for image in images:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f'img_slice_1x3_{i}.png'), image)
-        i += 1
-
-    images = slice(img, 2, 1)
-    i = 0
-    for image in images:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f'img_slice_2x1_{i}.png'), image)
-        i += 1
-
+    for param in params:
+        images = slice(param['image'], param['rows'], param['cols'])
+        i = 0
+        for image in images:
+            cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_slice_{param['rows']}x{param['cols']}_{i}.png"), image)
+            i += 1
+    
+    
+    
     """Failure example"""
     #slice(img, -1, -1)
     #slice()

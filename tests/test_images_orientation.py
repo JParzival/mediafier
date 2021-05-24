@@ -11,26 +11,80 @@ if not os.path.exists(SAVE_IMG_DIR):
 def test_image_orientation_flip():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_flip_h.png'), flip(img, 'horizontal'))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_flip_v.png'), flip(img, 'vertical'))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_flip_b.png'), flip(img, 'both'))
+    params = [
+        {
+            'image': img,
+            'orientation': 'vertical'
+        },
+        {
+            'image': img,
+            'orientation': 'horizontal'
+        },
+        {
+            'image': img,
+            'orientation': 'both'
+        }
+    ]
+
+    for param in params:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_flip_{param['orientation']}.png"), flip(param['image'], param['orientation']))
 
     """Failure example"""
     #img_flip_b = flip(img, 1)
+
+
 
 def test_image_orientation_rotation():
     img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
 
     """Easy rotations"""
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_rotate_90.png'),  rotate(img, 90))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_rotate_180.png'), rotate(img, 180))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_rotate_270.png'), rotate(img, 270))
+    params_ez = [
+        {
+            'image': img,
+            'orientation': 90
+        },
+        {
+            'image': img,
+            'orientation': 180
+        },
+        {
+            'image': img,
+            'orientation': 270
+        }
+    ]
+
+    for param in params_ez:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_rotate_{param['orientation']}.png"),  rotate(param['image'], param['orientation']))
+
 
     """Complex rotations"""
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_rotate_45_ffFalse.png'), rotate(img, degrees=45, force_fit=False))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_rotate_45_ffTrue.png'),  rotate(img, degrees=45, force_fit=True))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_rotate_245_ffFalse.png'), rotate(img, degrees=245, force_fit=False))
-    cv2.imwrite(os.path.join(SAVE_IMG_DIR, 'img_rotate_245_ffTrue.png'),  rotate(img, degrees=245, force_fit=True))
+    params_ez = [
+        {
+            'image': img,
+            'orientation': 45,
+            'forcefit': False
+        },
+        {
+            'image': img,
+            'orientation': 45,
+            'forcefit': True
+        },
+        {
+            'image': img,
+            'orientation': 245,
+            'forcefit': False
+        },
+        {
+            'image': img,
+            'orientation': 245,
+            'forcefit': True
+        }
+    ]
+
+    for param in params_ez:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_rotate_{param['orientation']}_{param['forcefit']}.png"), rotate(param['image'], param['orientation'], force_fit=param['forcefit']))
+
+
 
     """Failure example"""
     #rotate(img, -5)

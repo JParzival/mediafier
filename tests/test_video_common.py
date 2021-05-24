@@ -9,6 +9,11 @@ if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)
 
 def test_video_common_extractFrames():
+
+    """
+    Not with the other tests fashion, cause it would be much more work to make it that fashion for no benefit
+    """
+
     video = os.path.join(SRC_IMG_DIR, 'test.mp4')
 
     """Extract in memory one of every 20"""
@@ -43,7 +48,7 @@ def test_video_common_extractFrames():
     savepath = os.path.join(SAVE_IMG_DIR, 'test5')
     if not os.path.exists(savepath):
         os.makedirs(savepath)
-    ok = extractFrames(video, save='disk', savePath=savepath, format='jpg', every=30, resize=True, newWidth=200, newHeight=200)
+    ok = extractFrames(video, save='disk', savePath=savepath, format='jpg', every=30, resizeImg=True, newWidth=200, newHeight=200)
     
     """Failure example"""
     #video = os.path.join(SRC_IMG_DIR, 'test.mp4')
