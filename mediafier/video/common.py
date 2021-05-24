@@ -111,7 +111,7 @@ def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1
             break
 
         if resize:
-            size.resize(frame, size=(newWidth, newHeight))
+            frame = size.resize(frame, size=(newWidth, newHeight))
 
         if save == 'disk':
             if not os.path.exists(savePath):
