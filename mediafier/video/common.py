@@ -2,9 +2,9 @@ import cv2
 import os
 
 from ..utils.utils import intdetector, stringdetector, str2bool
-from ..image import size
+from ..image.size import resize
 
-def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1, resize=False, newWidth=None, newHeight=None):
+def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1, resizeImg=False, newWidth=None, newHeight=None):
     """
         This function extracts the frames of a video that the user inputs by a path.
         It has several parameters that make it fully customisable, that are explained in the following lines
@@ -64,7 +64,7 @@ def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1
             format = 'jpg'
         return save, format
 
-    def _checks(videoPath, save, savePath, format, every, resize):
+    def _checks(videoPath, save, savePath, format, every, resizeImg):
         stringdetector(videoPath)
         if not os.path.exists(videoPath):
             os.makedirs(videoPath)
@@ -86,15 +86,15 @@ def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1
         if every <= 0:
             raise ValueError("Every parameter must be over zero")
 
-        str2bool(resize)
-        if resize == True:
+        str2bool(resizeImg)
+        if resizeImg == True:
             intdetector(newWidth)
             intdetector(newHeight)
             if newWidth <= 0 or newHeight <= 0:
                 raise ValueError("The new values of height and width must be over zero")
 
     save, format = _prep(save, format)
-    _checks(videoPath, save, savePath, format, every, resize)
+    _checks(videoPath, save, savePath, format, every, resizeImg)
 
     video = cv2.VideoCapture(videoPath)
 
@@ -110,8 +110,8 @@ def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1
         if not ret: #End of video or sudden death :)
             break
 
-        if resize:
-            frame = size.resize(frame, size=(newWidth, newHeight))
+        if resizeImg:
+            frame = resize(frame, size=(newWidth, newHeight))
 
         if save == 'disk':
             if not os.path.exists(savePath):
