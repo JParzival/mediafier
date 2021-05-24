@@ -2,8 +2,8 @@ import cv2
 import os 
 from mediafier.image.color import modify_contrast, modify_brightness
 
-SRC_IMG_DIR = os.path.join('test_imgs', 'imgs_src_test')
-SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'image', 'color')
+SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
+SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'image', 'color')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)

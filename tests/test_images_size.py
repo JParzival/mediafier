@@ -2,8 +2,8 @@ import cv2
 import os 
 from mediafier.image.size import resize
 
-SRC_IMG_DIR = os.path.join('test_imgs', 'imgs_src_test')
-SAVE_IMG_DIR = os.path.join('test_imgs', 'imgs_result_test', 'image', 'size')
+SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
+SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'image', 'size')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)

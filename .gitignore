@@ -1,7 +1,7 @@
 venv
 mediafier.egg-info
 .pytest_cache
-test_imgs
+test_media
 */__pycache__
 */*/__pycache__
 .eggs
