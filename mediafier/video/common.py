@@ -103,7 +103,7 @@ def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1
     while(video.isOpened()):
         ret, frame = video.read()
 
-        if obsFrames % every != 0:
+        if obsFrames % every != 0 and every != 1:
             obsFrames = obsFrames + 1
             continue
 
