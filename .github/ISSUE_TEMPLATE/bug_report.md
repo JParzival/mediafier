@@ -29,10 +29,10 @@ If applicable, add screenshots to help explain your problem.
 - Graphics Card: [e.g. NVIDIA 3070 8GB]
 
 **Complete the following software specifications of the machine you run it on:**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+ - Device: [e.g. PC]
+ - OS: [e.g. Windows 10]
+ - Python: [e.g. Python 3.6]
+
 
 **Additional context**
 Add any other context about the problem here.
