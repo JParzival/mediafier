@@ -1,7 +1,7 @@
 # mediafier
 
 <p align="center">
-  <img src="./logo/logo_195.png" hspace="10">
+  <img src="./images/logo/logo_195.png" hspace="10">
 </p>
 
 🔧 LIBRARY UNDER CONSTRUCTION 🔧
