@@ -4,6 +4,8 @@
   <img src="./logo/logo_195.png" hspace="10">
 </p>
 
+🔧 LIBRARY UNDER CONSTRUCTION 🔧
+
 Python library that helps with media (image/video) transformation and augmentation for machine learning and artificial vision projects. Enables the user to modify media for different purposes, as increasing a dataset or just changing some properties.
 
 This library is different to many others in the way that wants to **make image and video transformation simple** by one liners, but fully customisable at the same time. Media transformation for everyone.
