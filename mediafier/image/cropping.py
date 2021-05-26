@@ -1,6 +1,7 @@
 import cv2
 
 from ..utils.utils import intdetector, str2bool
+from ..image.size import addBorders
 
 def crop(img, x, y, w, h, fill=False):
     """
@@ -40,7 +41,7 @@ def crop(img, x, y, w, h, fill=False):
     else:
         org_w, org_h = img.shape[0], img.shape[1]
         img = img[y:y+h, x:x+w]
-        return cv2.copyMakeBorder(img, y, org_h-(y+h), x, org_w-(x+w), cv2.BORDER_CONSTANT, 0)
+        return addBorders(img, y, org_h-(y+h), x, org_w-(x+w), 'constant', 'black')
 
 
 def slice(img, rows=2, cols=2):

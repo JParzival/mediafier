@@ -1,6 +1,6 @@
 import cv2
 import os 
-from mediafier.image.size import resize
+from mediafier.image.size import resize, addBorders
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'image', 'size')
@@ -76,3 +76,101 @@ def test_image_size_resize():
     #resize(img, "a")
     #resize(img, size=(-1, 1))
     #resize(img, size=("a", 1))
+
+
+def test_image_size_addBorders():
+    img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
+
+    params = [
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 100,
+            'left': 100,
+            'right': 100,
+            'borderType': 'constant',
+            'color': 'black'
+        },
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 100,
+            'left': 100,
+            'right': 100,
+            'borderType': 'constant',
+            'color': 'white'
+        },
+        {
+            'image': img,
+            'top': 0,
+            'bottom': 0,
+            'left': 0,
+            'right': 0,
+            'borderType': 'constant',
+            'color': 'white'
+        },
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 0,
+            'left': 0,
+            'right': 0,
+            'borderType': 'constant',
+            'color': 'white'
+        },
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 100,
+            'left': 0,
+            'right': 0,
+            'borderType': 'constant',
+            'color': 'white'
+        },
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 100,
+            'left': 100,
+            'right': 0,
+            'borderType': 'constant',
+            'color': 'black'
+        },
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 100,
+            'left': 100,
+            'right': 100,
+            'borderType': 'reflect',
+            'color': 'black'
+        },
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 100,
+            'left': 100,
+            'right': 100,
+            'borderType': 'default',
+            'color': 'black'
+        },
+        {
+            'image': img,
+            'top': 100,
+            'bottom': 100,
+            'left': 100,
+            'right': 100,
+            'borderType': 'replicate',
+            'color': 'black'
+        }
+    ]
+    
+    for param in params:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_addBorders_{str(param['top'])}_{str(param['bottom'])}_{str(param['left'])}_{str(param['right'])}_{param['borderType']}_{param['color']}.png"), 
+                    addBorders(param['image'], top=param['top'], bottom=param['bottom'], left=param['left'], right=param['right'], borderType=param['borderType'], color=param['color']))
+
+    """Failure example"""
+    #addBorders(img, -1)
+    #addBorders(img, "a")
+    #addBorders(img, 1, 1, 1, 1, 'noclue')
+    #addBorders(img, 1, 1, 1, 1, 'constant', 'pink')
