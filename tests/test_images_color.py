@@ -1,6 +1,6 @@
 import cv2
 import os 
-from mediafier.image.color import modify_contrast, modify_brightness
+from mediafier.image.color import modifyContrast, modifyBrightness
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'image', 'color')
@@ -32,7 +32,7 @@ def test_image_color_contrast():
     ]
 
     for param in params_default:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_contrast_{param['value']}_default.png"), modify_contrast(param['image'], param['value']))
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_contrast_{param['value']}_default.png"), modifyContrast(param['image'], param['value']))
 
     
     """Transform contrast CLAHE"""
@@ -64,15 +64,15 @@ def test_image_color_contrast():
     ]
     
     for param in params_clahe:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_contrast_{param['value']}_CLAHE.png"), modify_contrast(param['image'], param['value'], param['method']))
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_contrast_{param['value']}_CLAHE.png"), modifyContrast(param['image'], param['value'], param['method']))
 
 
 
     """Failure example"""
     
-    #modify_contrast(img, "a")
-    #modify_contrast(img, 1, ':S')
-    #modify_contrast(img, -1)
+    #modifyContrast(img, "a")
+    #modifyContrast(img, 1, ':S')
+    #modifyContrast(img, -1)
 
 
 
@@ -105,11 +105,11 @@ def test_image_color_brightness():
     ]
 
     for param in params_default:
-        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_brightness_{param['value']}.png"), modify_contrast(param['image'], param['value']))
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_brightness_{param['value']}.png"), modifyBrightness(param['image'], param['value']))
 
     
     """Failure example"""
     
-    #modify_brightness(img, "a")
-    #modify_brightness(img, 1, ':S')
-    #modify_brightness(img, -1)
+    #modifyBrightness(img, "a")
+    #modifyBrightness(img, 1, ':S')
+    #modifyBrightness(img, -1)

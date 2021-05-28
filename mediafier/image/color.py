@@ -4,7 +4,7 @@ import numpy as np
 from ..utils.utils import floatdetector, stringdetector
 
 
-def modify_contrast(img, value=1, method='default'):
+def modifyContrast(img, value=1, method='default'):
     """
     This function retrieves an image with the contrast modified from an image.
     In case of using the CLAHE method, the image must be in the BGR colorspace.
@@ -53,7 +53,7 @@ def modify_contrast(img, value=1, method='default'):
         return cv2.addWeighted(img, value, img, 0, 1)
 
 
-def modify_brightness(img, value=1):
+def modifyBrightness(img, value=1):
     """
     This function retrieves an image with the brightness modified.
 
