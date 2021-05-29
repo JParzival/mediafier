@@ -155,6 +155,7 @@ If you want to make a PR, please follow these steps:
       <a href="" title="Makes media">🎨</a> 
       <a href="" title="Documentation">📖</a>
       <br/>
+      <br/>
       <a href="https://www.jparzival.com">
         <img src="https://avatars.githubusercontent.com/u/33935947?v=4" width="150px;" alt="JParzival"/><br/>
         <sub><b>Jorge de Andrés</b></sub>
