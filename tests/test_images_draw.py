@@ -3,7 +3,7 @@ import os
 from mediafier.image.draw import drawBBox
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
-SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'image', 'draw')
+SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'draw')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)

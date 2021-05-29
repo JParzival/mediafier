@@ -3,7 +3,7 @@ import os
 from mediafier.image.orientation import flip, rotate
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
-SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'image', 'orientation')
+SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'orientation')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)

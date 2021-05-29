@@ -3,7 +3,7 @@ import os
 from mediafier.video.common import extractFrames
 
 SRC_IMG_DIR = os.path.join('test_media', 'video_src_test')
-SAVE_IMG_DIR = os.path.join('test_media', 'video_result_test', 'video', 'common')
+SAVE_IMG_DIR = os.path.join('test_media', 'video_result_test', 'common')
 
 if not os.path.exists(SAVE_IMG_DIR):
     os.makedirs(SAVE_IMG_DIR)
