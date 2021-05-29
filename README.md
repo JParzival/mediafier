@@ -102,7 +102,7 @@ from mediafier.image.size import resize
 img = cv2.imread('path/to/image.png')
 
 # Resize the image
-finalimg = resize(img, size=(1280,720), interpolation='area)
+finalimg = resize(img, size=(1280,720), interpolation='area')
 ```
 
 #### Draw a bounding box on the image
