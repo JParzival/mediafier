@@ -5,3 +5,4 @@ test_media
 */__pycache__
 */*/__pycache__
 .eggs
+notebooks

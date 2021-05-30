@@ -12,7 +12,7 @@ def test_image_color_contrast():
     img1 = cv2.imread(os.path.join(SRC_IMG_DIR, 'blurry.jpg'))
     img2 = cv2.imread(os.path.join(SRC_IMG_DIR, 'notBlurry.jpg'))
 
-    """Transform contrast default"""
+    """Image 1: Blurry"""
     params_1=[
         {
             'image': img1,
@@ -36,6 +36,7 @@ def test_image_color_contrast():
         }
     ]
 
+    """Image 2: Not blurry"""
     params_2=[
         {
             'image': img2,
