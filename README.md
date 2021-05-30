@@ -1,7 +1,7 @@
 # mediafier
 
 <p align="center">
-  <img src="./images/logo/logo_195.png" hspace="10">
+  <img src="./images/logo/logo_197.png" hspace="10">
 </p>
 
 🔧 LIBRARY UNDER CONSTRUCTION 🔧
@@ -156,6 +156,7 @@ If you want to make a PR, please follow these steps:
       <a href="" title="Documentation">📖</a>
       <br/>
       <br/>
+      <!--JParzi-->
       <a href="https://www.jparzival.com">
         <img src="https://avatars.githubusercontent.com/u/33935947?v=4" width="150px;" alt="JParzival"/><br/>
         <sub><b>Jorge de Andrés</b></sub>
@@ -169,6 +170,24 @@ If you want to make a PR, please follow these steps:
       </a>
       <a href='https://open.spotify.com/user/jorgetenisman?si=4c2473495361400f'>
         <img src='https://c0.klipartz.com/pngpicture/67/313/gratis-png-spotify-podcast-spotify-logo.png', width="18px;">
+      </a>
+    </td>
+    <!--Alba Gállego-->
+    <td align="center">
+      <a href="" title="Developer">🔧</a>
+      <a href="" title="Makes media">🎨</a> 
+      <br/>
+      <br/>
+      <a href="https://github.com/albagallegom">
+        <img src="https://avatars.githubusercontent.com/u/84712827?v=4" width="150px;" alt="Alba Gállego"/><br/>
+        <sub><b>Alba Gállego</b></sub>
+      </a>
+      <br/>
+      <a href='https://www.linkedin.com/in/alba-g%C3%A1llego-mar%C3%ADn-08227315a/?originalSubdomain=es'>
+        <img src='https://image.flaticon.com/icons/png/512/174/174857.png', width="15px;">
+      </a>
+      <a href='https://github.com/albagallegom'>
+        <img src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png', width="15px;">
       </a>
     </td>
   </tr>
