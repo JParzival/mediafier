@@ -127,3 +127,69 @@ def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1
         return True
     elif save == 'memory':
         return saved_frames
+
+
+def modifyFps(videoPath, newFps, output='output.avi'):
+
+    """
+        This function modifies the FPS of a video that the user inputs.
+        Remember that modifying the FPS of a video will shorten or lenghten it.
+
+        Args:
+            videoPath (:obj: str, mandatory): 
+                Path to the video, with the video included in the string. (e.g. path/to/video.avi)
+            newFps (:obj: int, mandatory): 
+                FPS that the output video will have.
+            output (:obj: str, optional): 
+                Complete path of where the video will be stored.(e.g. /path/to/folder/video.avi)
+                Defaults to 'output.avi'
+                This param determines the output of the video. The accepted are:
+                    - avi
+                    - mp4
+
+        Raises:
+            ValueError: Raised if any of the values is not correct.
+            ArgumentTypeError: Raised if any of the types of the values is not proper.
+        """
+
+    def _checks(videoPath, newFps, output):
+        stringdetector(videoPath)
+        intdetector(newFps)
+        if newFps < 1:
+            raise ValueError("Values less than 1 are not accepted as they have no sense ;)")
+        stringdetector(output)
+        try:
+            format = output.split('.')[-1]
+            format = format.lower()
+            if format not in ['avi', 'mp4']:
+                raise ValueError("Format not accepted. Accepted formats are 'avi' and 'mp4'")
+        except Exception as e:
+            raise ValueError("Format not accepted. Accepted formats are 'avi' and 'mp4'")
+            
+
+    _checks(videoPath, newFps, output)
+
+    video = cv2.VideoCapture(videoPath)
+    fps = video.get(cv2.CAP_PROP_FPS)
+    v_width  = video.get(cv2.CAP_PROP_FRAME_WIDTH)  
+    v_height = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
+    if format == 'avi':
+        fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+    else:
+        fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+
+    if fps == newFps:
+        raise ValueError("The FPS to obtain are the same amount of FPS of the original video")
+
+    out = cv2.VideoWriter(output, fourcc=fourcc, fps=newFps, frameSize=(int(v_width), int(v_height)))
+    video = cv2.VideoCapture(videoPath)
+
+    while(video.isOpened()):
+        ret, frame = video.read()
+
+        if not ret:
+            break
+
+        out.write(frame)
+
+    video.release()
