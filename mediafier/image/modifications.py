@@ -76,6 +76,29 @@ def blur(img, method='default', value='medium'):
 
 
 def pixelate(img, value='medium'):
+    """
+        This function retrieves an image pixelated.
+
+        Args:
+            img (:obj: array, mandatory): 
+                Image to modify.
+            value (:obj: str, optional): 
+                Amount of pixelation that will be applied to the image.
+                Possible values are:
+                    - extreme
+                    - high
+                    - medium
+                    - low
+                Defaults to 'medium'
+
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the transformation applied.
+
+        Raises:
+            ValueError: Raised if any of the values is not inputted properly.
+            ArgumentTypeError: Raised if any of the values does not have the proper type.
+        """
 
     def _valuechoice(value, w, h):
         if value == 'extreme':
