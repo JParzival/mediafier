@@ -1,6 +1,6 @@
 import cv2
 import os 
-from mediafier.image.modifications import blur
+from mediafier.image.modifications import blur, pixelate
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'modifications')
@@ -64,3 +64,57 @@ def test_image_modifications_blur():
     #blur(img, "another")
     #blur(img, "default", -1)
     #blur(img, "gaussian", "a")
+
+
+def test_image_modifications_pixelate():
+
+    img1 = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
+    img2 = cv2.imread(os.path.join(SRC_IMG_DIR, 'notBlurry.jpg'))
+
+    params=[
+        {
+            'image': img1,
+            'value': 'low'
+        },
+        {
+            'image': img1,
+            'value': 'medium'
+        },
+        {
+            'image': img1,
+            'value': 'high'
+        },
+        {
+            'image': img1,
+            'value': 'extreme'
+        }
+    ]
+
+    for param in params:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_pixelate_1_{param['value']}.png"), pixelate(param['image'], param['value']))
+
+    params = [
+        {
+            'image': img2,
+            'value': 'low'
+        },
+        {
+            'image': img2,
+            'value': 'medium'
+        },
+        {
+            'image': img2,
+            'value': 'high'
+        },
+        {
+            'image': img2,
+            'value': 'extreme'
+        }
+    ]
+
+    for param in params:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_pixelate_2_{param['value']}.png"), pixelate(param['image'], param['value']))
+
+    """Failure example"""
+    #pixelate(img2, "a")
+    #pixelate(img2, 1)
