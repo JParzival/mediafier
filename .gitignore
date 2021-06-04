@@ -6,3 +6,4 @@ test_media
 */*/__pycache__
 .eggs
 notebooks
+dist
