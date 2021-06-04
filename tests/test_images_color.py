@@ -1,6 +1,6 @@
 import cv2
 import os 
-from mediafier.image.color import modifyContrast, modifyBrightness
+from mediafier.image.color import modifyContrast, modifyBrightness, changeBGRColorspace
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'color')
@@ -113,3 +113,46 @@ def test_image_color_brightness():
     #modifyBrightness(img, "a")
     #modifyBrightness(img, 1, ':S')
     #modifyBrightness(img, -1)
+
+
+def test_image_color_colorspaceBGR():
+    img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
+
+    params = [
+        {
+            'image': img,
+            'to': 'gray'
+        },
+        {
+            'image': img,
+            'to': 'hsv'
+        },
+        {
+            'image': img,
+            'to': 'hls'
+        },
+        {
+            'image': img,
+            'to': 'lab'
+        },
+        {
+            'image': img,
+            'to': 'luv'
+        },
+        {
+            'image': img,
+            'to': 'yuv'
+        },
+        {
+            'image': img,
+            'to': 'rgb'
+        }
+    ]
+
+    for param in params:
+        cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_colorspaceBGR_{param['to']}.png"), changeBGRColorspace(param['image'], param['to']))
+
+    """Failure example"""
+
+    #changeBGRColorspace(img, "a")
+    #changeBGRColorspace(img, 1)

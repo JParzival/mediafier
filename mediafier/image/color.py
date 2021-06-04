@@ -79,3 +79,59 @@ def modifyBrightness(img, value=1):
     else:
         return cv2.convertScaleAbs(img, alpha=value, beta=1)
  
+
+def changeBGRColorspace(img, to='gray'):
+
+    """
+    This function, from a BGR image, retrieves another one with the colorspace modified.
+
+    Args:
+        img (:obj: array, mandatory): 
+            Image to flip.
+        to (:obj: str, optional): 
+            The colorspace that the image is going to be converted to
+            The accepted values are:
+                - gray
+                - hsv
+                - hls
+                - lab
+                - luv
+                - yuv
+                - rgb
+            Defaults to 'gray'
+
+    Returns:
+        :obj: array:
+            The resulting object is the image, in the same format as inputted, but with the transformation applied.
+
+    Raises:
+        ValueError: Raised if the value inputted is not between the accepted.
+        ArgumentTypeError: Raised if any value does not have its correct format.
+    """
+
+
+    def _checks(to):
+        stringdetector(to)
+        to = to.lower()
+        if to not in ['gray', 'hsv', 'hls', 'lab', 'luv', 'yuv', 'rgb']:
+            raise ValueError("Not an accepted colorspace to convert to")
+        return to
+    
+    to = _checks(to)
+
+    if to == "gray":
+        return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    elif to == "hsv":
+        return cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    elif to == "hls":
+        return cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
+    elif to == "lab":
+        return cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    elif to == "luv":
+        return cv2.cvtColor(img, cv2.COLOR_BGR2LUV)
+    elif to == "yuv":
+        return cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
+    elif to == "rgb":
+        return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    else:
+        return img
