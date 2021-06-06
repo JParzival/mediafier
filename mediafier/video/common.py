@@ -1,7 +1,7 @@
 import cv2
 import os
 
-from ..utils.utils import intdetector, stringdetector, str2bool
+from ..utils.utils import floatdetector, intdetector, stringdetector, str2bool
 from ..image.size import resize
 
 def extractFrames(videoPath, save='memory', savePath=None, format='png', every=1, resizeImg=False, newWidth=None, newHeight=None):
@@ -150,7 +150,7 @@ def modifyFps(videoPath, newFps, output='output.avi'):
         Raises:
             ValueError: Raised if any of the values is not correct.
             ArgumentTypeError: Raised if any of the types of the values is not proper.
-        """
+    """
 
     def _checks(videoPath, newFps, output):
         stringdetector(videoPath)
@@ -193,3 +193,75 @@ def modifyFps(videoPath, newFps, output='output.avi'):
         out.write(frame)
 
     video.release()
+
+
+def crop(videoPath, start, end, output='cropped.avi'):
+    """
+        This function crops a video between two values that the user inputs in seconds, and will output it where the user wants.
+
+        Args:
+            videoPath (:obj: str, mandatory): 
+                Path to the video, with the video included in the string. (e.g. path/to/video.avi)
+            start (:obj: float, mandatory): 
+                Second where the new video will begin.
+            end (:obj: float, mandatory): 
+                Second where the new video will end.
+            output (:obj: str, optional): 
+                Complete path of where the video will be stored.(e.g. /path/to/folder/video.avi)
+                Defaults to 'cropped.avi'
+                This param determines the output of the video. The accepted are:
+                    - avi
+                    - mp4
+
+        Raises:
+            ValueError: Raised if any of the values is not correct.
+            ArgumentTypeError: Raised if any of the types of the values is not proper.
+    """
+
+    def _checks(videoPath, start, end, output):
+        stringdetector(videoPath)
+        floatdetector(start)
+        floatdetector(end)
+        if start < 0:
+            raise ValueError("Values less than 0 are not accepted as they have no sense ;)")
+        if start >= end:
+            raise ValueError("You cannot end the video before starting it")
+        stringdetector(output)
+        try:
+            format = output.split('.')[-1]
+            format = format.lower()
+            if format not in ['avi', 'mp4']:
+                raise ValueError("Format not accepted. Accepted formats are 'avi' and 'mp4'")
+        except Exception as e:
+            raise ValueError("Format not accepted. Accepted formats are 'avi' and 'mp4'")
+
+    _checks(videoPath, start, end, output)
+
+    video = cv2.VideoCapture(videoPath)
+    fps = video.get(cv2.CAP_PROP_FPS)
+    v_width  = video.get(cv2.CAP_PROP_FRAME_WIDTH)  
+    v_height = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
+
+    if format == 'avi':
+        fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+    else:
+        fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+
+    out = cv2.VideoWriter(output, fourcc=fourcc, fps=fps, frameSize=(int(v_width), int(v_height)))
+    video = cv2.VideoCapture(videoPath)
+
+    frame_start = int(fps * start)
+    frame_end = int(fps * end)
+
+    nframe = 1
+    while(video.isOpened()):
+        ret, frame = video.read()
+        if not ret:
+            break
+        
+        if nframe >= frame_start and nframe <= frame_end:
+            out.write(frame)
+
+        nframe += 1
+    video.release()
+

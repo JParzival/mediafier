@@ -1,6 +1,6 @@
 import cv2
 import os 
-from mediafier.video.common import extractFrames, modifyFps
+from mediafier.video.common import extractFrames, modifyFps, crop
 
 SRC_IMG_DIR = os.path.join('test_media', 'video_src_test')
 SAVE_IMG_DIR = os.path.join('test_media', 'video_result_test', 'common')
@@ -93,3 +93,37 @@ def test_video_common_modifyFps():
     #modifyFps(video, -1)
     #modifyFps(video, 120, "modifyFps_60.mov")
     #modifyFps(video, 120, "modifyFps_60")
+
+
+def test_video_common_crop():
+    video = os.path.join(SRC_IMG_DIR, 'test2.mp4')
+
+    params = [
+        {
+            'videoPath': video,
+            'start': 0,
+            'end': 5,
+            'output': os.path.join(SAVE_IMG_DIR, "crop_0_5.avi")
+        },
+        {
+            'videoPath': video,
+            'start': 5,
+            'end': 15,
+            'output': os.path.join(SAVE_IMG_DIR, "crop_5_15.avi")
+        },
+        {
+            'videoPath': video,
+            'start': 0,
+            'end': 5,
+            'output': os.path.join(SAVE_IMG_DIR, "crop_0_5.mp4")
+        },
+        {
+            'videoPath': video,
+            'start': 5,
+            'end': 15,
+            'output': os.path.join(SAVE_IMG_DIR, "crop_5_15.mp4")
+        }
+    ]
+
+    for param in params:
+        crop(param['videoPath'], param['start'], param['end'], param['output'])
