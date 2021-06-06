@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
+from sklearn.cluster import KMeans
 
-from ..utils.utils import floatdetector, stringdetector
+from ..utils.utils import floatdetector, intdetector, stringdetector
 
 
 def modifyContrast(img, value=1, method='default'):
@@ -81,7 +82,6 @@ def modifyBrightness(img, value=1):
  
 
 def changeBGRColorspace(img, to='gray'):
-
     """
         This function, from a BGR image, retrieves another one with the colorspace modified.
 
@@ -135,3 +135,85 @@ def changeBGRColorspace(img, to='gray'):
         return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     else:
         return img
+
+
+def findMostCommonColor(img, method='frequency', clusters=3):
+    """
+        This function finds the most common color of the image using different methods.
+
+        Args:
+            img (:obj: array, mandatory): 
+                Image to flip.
+            method (:obj: str, optional): 
+                Method that will be applied.
+                Possible values are:
+                    - average: This method brings back the average color of the image
+                    - frequency: This method brings back the most common color of the image
+                    - kmeans: This method, using kmeans, brings back the most common colors of the image
+                Defaults to 'frequency'.
+            clusters (:obj: int, optional):
+                Number of clusters, and therefore colors, that the kmeans will train to get the colors.
+                Defaults to 3.
+
+        Returns:
+            Methods average and frequency:
+            :obj: array:
+                The resulting object an array with the colors in BGR format.
+            :obj: array:
+                Image ready to be painted with the main color.
+
+            Method kmeans:
+            :obj: array:
+                The resulting object an array of arrays with the colors in BGR format for every centroid.
+            :obj: array:
+                Image ready to be painted with the palette of the main colors.
+
+        Raises:
+            ValueError: Raised if the value inputted is less than one or the param is not between the accepted.
+            ArgumentTypeError: Raised if any value does not have its correct format.
+    """
+
+    def _checks(method, clusters):
+        stringdetector(method)
+        method = method.lower()
+        if method not in ['average', 'frequency', 'kmeans']:
+            raise ValueError("Method must be 'average', 'frequency' or 'kmeans'")
+        
+        if method == 'kmeans':
+            intdetector(clusters)
+            if clusters < 1:
+                raise ValueError("Value of clusters must be one or above")
+
+        return method
+
+    def _palette(clusters):
+        width=300
+        palette = np.zeros((50, width, 3), np.uint8)
+        steps = width/clusters.cluster_centers_.shape[0]
+        for idx, centers in enumerate(clusters.cluster_centers_): 
+            palette[:, int(idx*steps):(int((idx+1)*steps)), :] = centers
+        return palette
+
+    method = _checks(method, clusters)
+
+    if method == 'average':
+        img_temp = img.copy()
+        img_temp[:,:,0], img_temp[:,:,1], img_temp[:,:,2] = np.average(img, axis=(0,1))
+
+        return [np.unique(img_temp[:,:,0]), 
+                np.unique(img_temp[:,:,1]), 
+                np.unique(img_temp[:,:,2])], img_temp
+
+    elif method == 'frequency':
+        img_temp = img.copy()
+        unique, counts = np.unique(img_temp.reshape(-1, 3), axis=0, return_counts=True)
+        img_temp[:,:,0], img_temp[:,:,1], img_temp[:,:,2] = unique[np.argmax(counts)]
+        return [np.unique(img_temp[:,:,0]), 
+                np.unique(img_temp[:,:,1]), 
+                np.unique(img_temp[:,:,2])], img_temp
+
+    elif method == 'kmeans':
+        img_temp = img.copy()
+        clt_3 = KMeans(n_clusters=clusters)
+        clt_3.fit(img_temp.reshape(-1, 3))
+        return clt_3.cluster_centers_, _palette(clt_3)

@@ -1,6 +1,8 @@
 import cv2
-import os 
-from mediafier.image.color import modifyContrast, modifyBrightness, changeBGRColorspace
+import os
+
+from numpy.core.defchararray import find 
+from mediafier.image.color import modifyContrast, modifyBrightness, changeBGRColorspace, findMostCommonColor
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'color')
@@ -156,3 +158,44 @@ def test_image_color_colorspaceBGR():
 
     #changeBGRColorspace(img, "a")
     #changeBGRColorspace(img, 1)
+
+def test_image_color_mostCommonColor():
+    img = cv2.imread(os.path.join(SRC_IMG_DIR, 'test.png'))
+
+    params = [
+        {
+            'image': img,
+            'method': 'average'
+        },
+        {
+            'image': img,
+            'method': 'frequency'
+        },
+        {
+            'image': img,
+            'method': 'kmeans',
+            'clusters': 3
+        },
+        {
+            'image': img,
+            'method': 'kmeans',
+            'clusters': 6
+        }
+    ]
+
+    for param in params:
+        try:
+            a, b = findMostCommonColor(param['image'], param['method'], param['clusters'])
+            cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_mostCommonColor_{param['method']}_{param['clusters']}.png"), b)
+            with open(os.path.join(SAVE_IMG_DIR, f"img_mostCommonColor_{param['method']}_{param['clusters']}.txt"), 'w') as txtfile:
+                txtfile.write(str(a))
+        except Exception as e:
+            a, b = findMostCommonColor(param['image'], param['method'])
+            cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_mostCommonColor_{param['method']}.png"), b)
+            with open(os.path.join(SAVE_IMG_DIR, f"img_mostCommonColor_{param['method']}.txt"), 'w') as txtfile:
+                txtfile.write(str(a))
+
+    """Failure example"""
+
+    #findMostCommonColor(img, "a")
+    #findMostCommonColor(img, "kmeans", -1)
