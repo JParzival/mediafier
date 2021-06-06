@@ -7,3 +7,4 @@ test_media
 .eggs
 notebooks
 dist
+docs/_build
