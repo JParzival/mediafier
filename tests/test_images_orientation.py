@@ -89,3 +89,63 @@ def test_image_orientation_rotation():
     """Failure example"""
     #rotate(img, -5)
     #rotate(img, "a")
+    
+def test_image_orientation_rotateTextBased():
+    
+    img_text = cv2.imread(os.path.join(SRC_IMG_DIR, 'test_text.jpg'))
+    img_text_2 = cv2.imread(os.path.join(SRC_IMG_DIR, 'test_text_2.jpg'))
+    img_no_text = cv2.imread(os.path.join(SRC_IMG_DIR, 'test_no_text.jpg'))
+    
+    params = [
+        {
+            'image': img_text,
+            'pytesseract_path': "C:/Program Files/Tesseract-OCR/tesseract.exe",
+            'contrast': False,
+            'name': "text"
+        },
+        {
+            'image': img_text,
+            'pytesseract_path': "not_a_path",
+            'contrast': False,
+            'name': "ocr_fail"
+        },
+        {
+            'image': img_text,
+            'pytesseract_path': "C:/Program Files/Tesseract-OCR/tesseract.exe",
+            'contrast': True,
+            'name': "text_contrast"
+        },
+        {
+            'image': img_text_2,
+            'pytesseract_path': "C:/Program Files/Tesseract-OCR/tesseract.exe",
+            'contrast': False,
+            'name': "text_2"
+        },
+        {
+            'image': img_text_2,
+            'pytesseract_path': "C:/Program Files/Tesseract-OCR/tesseract.exe",
+            'contrast': True,
+            'name': "text_2_contrast"
+        },
+        {
+            'image': img_no_text,
+            'pytesseract_path': "C:/Program Files/Tesseract-OCR/tesseract.exe",
+            'contrast': False,
+            'name': "no_text"
+        },
+        {
+            'image': img_no_text,
+            'pytesseract_path': "C:/Program Files/Tesseract-OCR/tesseract.exe",
+            'contrast': True,
+            'name': "no_text_contrast"
+        }
+    ]
+
+    for param in params:
+        try:
+            cv2.imwrite(os.path.join(SAVE_IMG_DIR, f"img_rotateTextBased_{param['name']}.png"), rotateTextBased(param['image'], param['pytesseract_path'], param['contrast']))
+        except:
+            pass
+
+    """Failure example"""
+    #img_rotateTextBased_b = rotateTextBased(img, 1)
