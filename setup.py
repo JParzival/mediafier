@@ -1,7 +1,8 @@
 from setuptools import find_packages, setup
 
 INSTALL_REQUIRES = ['opencv-python == 4.5.2.52',
-                    'imutils == 0.5.4']
+                    'imutils == 0.5.4',
+                    'pytesseract==0.3.7']
 
 setup(
     name='mediafier',

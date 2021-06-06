@@ -91,7 +91,8 @@ def rotate(img, degrees=0, force_fit=False):
             return cv2.warpAffine(img, M, (w, h))
         else:
             return imutils.rotate_bound(img, degrees)
-        
+
+
 def rotateTextBased (img, pytesseract_path = "C:/Program Files/Tesseract-OCR/tesseract.exe", contrast = False):
     
     """
@@ -117,6 +118,7 @@ def rotateTextBased (img, pytesseract_path = "C:/Program Files/Tesseract-OCR/tes
         ValueError: Raised if the image has not the proper format.
         ValueError: Raised if no tesseract OCR is found.
     """
+    
     pytesseract.pytesseract.tesseract_cmd = pytesseract_path
 
     try:

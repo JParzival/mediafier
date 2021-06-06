@@ -1,6 +1,6 @@
 import cv2
 import os 
-from mediafier.image.orientation import flip, rotate
+from mediafier.image.orientation import flip, rotate, rotateTextBased
 
 SRC_IMG_DIR = os.path.join('test_media', 'imgs_src_test')
 SAVE_IMG_DIR = os.path.join('test_media', 'imgs_result_test', 'orientation')
@@ -89,7 +89,8 @@ def test_image_orientation_rotation():
     """Failure example"""
     #rotate(img, -5)
     #rotate(img, "a")
-    
+
+
 def test_image_orientation_rotateTextBased():
     
     img_text = cv2.imread(os.path.join(SRC_IMG_DIR, 'test_text.jpg'))
