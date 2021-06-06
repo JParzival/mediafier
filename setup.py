@@ -6,7 +6,7 @@ INSTALL_REQUIRES = ['opencv-python == 4.5.2.52',
 setup(
     name='mediafier',
     packages=find_packages(),
-    version='0.1.0',
+    version='0.1.2',
     description='Python library that helps with media (image/video) transformation and augmentation for machine learning and artificial vision projects. Enables the user to modify media for different purposes, as increasing a dataset or just changing some properties.',
     license='MIT',
     install_requires= INSTALL_REQUIRES,

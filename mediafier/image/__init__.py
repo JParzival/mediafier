@@ -8,4 +8,4 @@ from mediafier.image.modifications import *
 from mediafier.image.orientation import *
 from mediafier.image.size import *
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
