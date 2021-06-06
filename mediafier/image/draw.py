@@ -4,38 +4,38 @@ from ..utils.utils import intdetector, str2bool, stringdetector
 
 def drawBBox(img, x, y, w, h, color='black', thickness=2):
     """
-    This function retrieves an image with the bounding box that the user inputs painted.
+        This function retrieves an image with the bounding box that the user inputs painted.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to flip.
-        x (:obj: int, mandatory): 
-            X point of the first point (uppermost and leftmost)
-        y (:obj: int, mandatory): 
-            Y point of the first point (uppermost and leftmost)
-        w (:obj: int, mandatory): 
-            Width of the bounding box
-        h (:obj: int, mandatory): 
-            Height of the bounding box
-        color (:obj: str, optional): 
-            Color that the bounding box will have.
-            Options are:
-                - black
-                - white
-                - red
-                - blue
-            Defaults to black
-        thickness (:obj: int, optional):
-            Thickness that the bounding box will have.
-            Defaults to 2.
+        Args:
+            img (:obj: array, mandatory): 
+                Image to flip.
+            x (:obj: int, mandatory): 
+                X point of the first point (uppermost and leftmost)
+            y (:obj: int, mandatory): 
+                Y point of the first point (uppermost and leftmost)
+            w (:obj: int, mandatory): 
+                Width of the bounding box
+            h (:obj: int, mandatory): 
+                Height of the bounding box
+            color (:obj: str, optional): 
+                Color that the bounding box will have.
+                Options are:
+                    - black
+                    - white
+                    - red
+                    - blue
+                Defaults to black
+            thickness (:obj: int, optional):
+                Thickness that the bounding box will have.
+                Defaults to 2.
 
-    Returns:
-        :obj: array:
-            The resulting object is the image, in the same format as inputted, but with the transformation applied.
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the transformation applied.
 
-    Raises:
-        ValueError: Raised if any of the values is not inputted properly.
-        ArgumentTypeError: Raised if any of the values does not have the proper type.
+        Raises:
+            ValueError: Raised if any of the values is not inputted properly.
+            ArgumentTypeError: Raised if any of the values does not have the proper type.
     """
 
     def _checks(x, y, w, h, color, thickness):

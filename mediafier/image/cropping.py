@@ -5,29 +5,29 @@ from ..image.size import addBorders
 
 def crop(img, x, y, w, h, fill=False):
     """
-    This function retrieves the image sent by the user cropped with the coordinates that the user inputs.
+        This function retrieves the image sent by the user cropped with the coordinates that the user inputs.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to crop
-        x (:obj: int, mandatory): 
-            X coordinate of the closest point to the 0,0
-        y (:obj: int, mandatory): 
-            Y coordinate of the closest point to the 0,0
-        w (:obj: int, mandatory): 
-            Width of the crop in pixels
-        h (:obj: int, mandatory): 
-            Height of the crop in pixels
-        fill (:obj: bool, optional): 
-            If the image dimensions should be mantained filling the borders
+        Args:
+            img (:obj: array, mandatory): 
+                Image to crop
+            x (:obj: int, mandatory): 
+                X coordinate of the closest point to the 0,0
+            y (:obj: int, mandatory): 
+                Y coordinate of the closest point to the 0,0
+            w (:obj: int, mandatory): 
+                Width of the crop in pixels
+            h (:obj: int, mandatory): 
+                Height of the crop in pixels
+            fill (:obj: bool, optional): 
+                If the image dimensions should be mantained filling the borders
 
-    Returns:
-        :obj: array:
-            The resulting object is the image, in the same format as inputted, but with the transformation applied.
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the transformation applied.
 
-    Raises:
-        ValueError: Raised if any of the values of the size is not positive.
-        ArgumentTypeError: Raised if any of the values of the is not an int or the fill is not a bool.
+        Raises:
+            ValueError: Raised if any of the values of the size is not positive.
+            ArgumentTypeError: Raised if any of the values of the is not an int or the fill is not a bool.
     """
 
     for n in [x, y, w, h]:
@@ -46,26 +46,26 @@ def crop(img, x, y, w, h, fill=False):
 
 def slice(img, rows=2, cols=2):
     """
-    This function retrieves the image sent by the user sliced in several images, depending on the rows and cols that the user inputs.
+        This function retrieves the image sent by the user sliced in several images, depending on the rows and cols that the user inputs.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to slice.
-        rows (:obj: int, mandatory): 
-            Number of rows that will slice the image.
-            Default is 2.
-        cols (:obj: int, mandatory): 
-            Number of columns that will slice the image.
-            Default is 2.
+        Args:
+            img (:obj: array, mandatory): 
+                Image to slice.
+            rows (:obj: int, mandatory): 
+                Number of rows that will slice the image.
+                Default is 2.
+            cols (:obj: int, mandatory): 
+                Number of columns that will slice the image.
+                Default is 2.
 
-    Returns:
-        :obj: array[array]:
-            The resulting object an array with the images. They will be ordered by from the up-left one to the bottom-right one,
-            following a first row - later column fashion.
+        Returns:
+            :obj: array[array]:
+                The resulting object an array with the images. They will be ordered by from the up-left one to the bottom-right one,
+                following a first row - later column fashion.
 
-    Raises:
-        ValueError: Raised if any of the values of the size is not positive and over zero.
-        ArgumentTypeError: Raised if any of the values of the is not an int or the fill is not a bool.
+        Raises:
+            ValueError: Raised if any of the values of the size is not positive and over zero.
+            ArgumentTypeError: Raised if any of the values of the is not an int or the fill is not a bool.
     """
     
     for n in [rows, cols]:

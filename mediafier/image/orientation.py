@@ -8,22 +8,22 @@ from ..utils.utils import intdetector, stringdetector, str2bool
 
 def flip(img, axis='horizontal'):
     """
-    This function retrieves an image with the flipping desired by the user.
+        This function retrieves an image with the flipping desired by the user.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to flip.
-        axis (:obj: str, optional): 
-            Orientation in which the image has to be flipped (horizontal, vertical or both).
-            Default is horizontal.
+        Args:
+            img (:obj: array, mandatory): 
+                Image to flip.
+            axis (:obj: str, optional): 
+                Orientation in which the image has to be flipped (horizontal, vertical or both).
+                Default is horizontal.
 
-    Returns:
-        :obj: array:
-            The resulting object is the image, in the same format as inputted, but with the transformation applied.
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the transformation applied.
 
-    Raises:
-        ValueError: Raised if the axis is not inputted correctly.
-        ArgumentTypeError: Raised if the axis value is not a string.
+        Raises:
+            ValueError: Raised if the axis is not inputted correctly.
+            ArgumentTypeError: Raised if the axis value is not a string.
     """
 
     stringdetector(axis)
@@ -41,26 +41,26 @@ def flip(img, axis='horizontal'):
 
 def rotate(img, degrees=0, force_fit=False):
     """
-    This function retrieves an image with the rotation desired by the user.
+        This function retrieves an image with the rotation desired by the user.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to rotate.
-        degrees (:obj: int, optional): 
-            Degrees (clockwise) that the image has to be rotated. 
-            Default is returning the image as it is.
-        force_fit(:obj: bool, optional): 
-            If the image has to keep the same width and height when rotated (it will be cropped) or it can be resized.
-            Default is False.
+        Args:
+            img (:obj: array, mandatory): 
+                Image to rotate.
+            degrees (:obj: int, optional): 
+                Degrees (clockwise) that the image has to be rotated. 
+                Default is returning the image as it is.
+            force_fit(:obj: bool, optional): 
+                If the image has to keep the same width and height when rotated (it will be cropped) or it can be resized.
+                Default is False.
 
-    Returns:
-        :obj: array:
-            The resulting object is the image, in the same format as inputted, but with the transformation applied.
-            If force_fit == True, remember that the width and height of the image will change if degrees not in 0, 90, 180, 270.
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the transformation applied.
+                If force_fit == True, remember that the width and height of the image will change if degrees not in 0, 90, 180, 270.
 
-    Raises:
-        ValueError: Raised if the axis is not inputted correctly
-        ArgumentTypeError: Raised if the axis value is not a string or the force_fit is not a boolean or something convertible to boolean.
+        Raises:
+            ValueError: Raised if the axis is not inputted correctly
+            ArgumentTypeError: Raised if the axis value is not a string or the force_fit is not a boolean or something convertible to boolean.
     """
 
     def _easy_rotation(img, degrees):
@@ -96,27 +96,27 @@ def rotate(img, degrees=0, force_fit=False):
 def rotateTextBased (img, pytesseract_path = "C:/Program Files/Tesseract-OCR/tesseract.exe", contrast = False):
     
     """
-    This function retrieves an image rotated by the angle that allows to read the text properly.
-    The behaviour is based on pytesseract OCR, that has to be installed on your PC. You can download it from: 
-    https://github.com/UB-Mannheim/tesseract/wiki
+        This function retrieves an image rotated by the angle that allows to read the text properly.
+        The behaviour is based on pytesseract OCR, that has to be installed on your PC. You can download it from: 
+        https://github.com/UB-Mannheim/tesseract/wiki
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to rotate.
-        pytesseract_path (:obj: string, optional): 
-            Path in which pytesseract OCR is installed. By default it takes the most common path.
-        contrast (:obj: boolean, optional): 
-            If true, the dark elements of the image will be highlighted, reducing the noise of the image.
-            The contrast won't be applied in the returned image
+        Args:
+            img (:obj: array, mandatory): 
+                Image to rotate.
+            pytesseract_path (:obj: string, optional): 
+                Path in which pytesseract OCR is installed. By default it takes the most common path.
+            contrast (:obj: boolean, optional): 
+                If true, the dark elements of the image will be highlighted, reducing the noise of the image.
+                The contrast won't be applied in the returned image
 
-    Returns:
-        :obj: array:
-            The resulting object is the image, in the same format as inputted, but with the rotation applied.
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the rotation applied.
 
-    Raises:
-        ValueError: Raised if contrast parameter is not boolean.
-        ValueError: Raised if the image has not the proper format.
-        ValueError: Raised if no tesseract OCR is found.
+        Raises:
+            ValueError: Raised if contrast parameter is not boolean.
+            ValueError: Raised if the image has not the proper format.
+            ValueError: Raised if no tesseract OCR is found.
     """
     
     pytesseract.pytesseract.tesseract_cmd = pytesseract_path

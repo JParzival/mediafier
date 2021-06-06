@@ -4,29 +4,29 @@ from ..utils.utils import intdetector, str2bool, stringdetector
 
 def resize(img, ratio=100, size=None, interpolation=None):
     """
-    This function retrieves the image sent by the user resized with the ratio or the size inputted by the user.
-    The ratio has priority over the size in case that it is modified from the default value.
+        This function retrieves the image sent by the user resized with the ratio or the size inputted by the user.
+        The ratio has priority over the size in case that it is modified from the default value.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to rotate.
-        size (:obj: tuple, optional): 
-            Tuple with the new size of the image in (width, height) format.
-        ratio(:obj: int, optional): 
-            Number, in percentage, that indicates the percentage of upscaling or downscaling that the image will have applied.
-            Default is returning the image as it is.
-        interpolation(:obj: string, optional):
-            Type of interpolation that will be applied to the image.
-            Default is area if resize is not to a bigger one. In case of smaller resize, linear interpolation is the default.
+        Args:
+            img (:obj: array, mandatory): 
+                Image to rotate.
+            size (:obj: tuple, optional): 
+                Tuple with the new size of the image in (width, height) format.
+            ratio(:obj: int, optional): 
+                Number, in percentage, that indicates the percentage of upscaling or downscaling that the image will have applied.
+                Default is returning the image as it is.
+            interpolation(:obj: string, optional):
+                Type of interpolation that will be applied to the image.
+                Default is area if resize is not to a bigger one. In case of smaller resize, linear interpolation is the default.
 
-    Returns:
-        :obj: array:
-            The resulting object is the image, in the same format as inputted, but with the transformation applied.
-            If force_fit == True, remember that the width and height of the image will change if degrees not in 0, 90, 180, 270.
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the transformation applied.
+                If force_fit == True, remember that the width and height of the image will change if degrees not in 0, 90, 180, 270.
 
-    Raises:
-        ValueError: Raised if any of the values of the size is negative.
-        ArgumentTypeError: Raised if any of the values of the size tuple is not an int or the ratio is not a positive int.
+        Raises:
+            ValueError: Raised if any of the values of the size is negative.
+            ArgumentTypeError: Raised if any of the values of the size tuple is not an int or the ratio is not a positive int.
     """
 
     def _interpolation_choice(interpolation):
@@ -80,46 +80,46 @@ def resize(img, ratio=100, size=None, interpolation=None):
 
 def addBorders(img, top=0, bottom=0, left=0, right=0, borderType='constant', color='black'):
     """
-    This function adds borders to the sides of the image the user wants.
-    This borders can be white or black, or may have other effects, like reflections.
+        This function adds borders to the sides of the image the user wants.
+        This borders can be white or black, or may have other effects, like reflections.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image which is going to be added borders.
-        top (:obj: int, optional): 
-            Integer which indicates the number of pixels to add in top of the image.
-            Defaults to 0.
-        bottom (:obj: int, optional): 
-            Integer which indicates the number of pixels to add in the bottom of the image.
-            Defaults to 0.
-        left (:obj: int, optional): 
-            Integer which indicates the number of pixels to add in the left side of the image.
-            Defaults to 0.
-        right (:obj: int, optional): 
-            Integer which indicates the number of pixels to add in the right side of the image.
-            Defaults to 0.
-        borderType(:obj: string, optional): 
-            Type of border that the user wants to add to the image.
-            There are several options:
-                - Constant: Solid border, and the user can choose color.
-                - Reflect: The border will mirror the border elements.
-                - Default: Quite similar to 'reflect', but with slight changes.
-                - Replicate: Replicates the last element of the image.
-            Defaults to constant.
-        color(:obj: string, optional):
-            This param is only triggered if borderType is constant.
-            The user can choose between two colors to add:
-                - Black
-                - White
-            Defaults to black.
+        Args:
+            img (:obj: array, mandatory): 
+                Image which is going to be added borders.
+            top (:obj: int, optional): 
+                Integer which indicates the number of pixels to add in top of the image.
+                Defaults to 0.
+            bottom (:obj: int, optional): 
+                Integer which indicates the number of pixels to add in the bottom of the image.
+                Defaults to 0.
+            left (:obj: int, optional): 
+                Integer which indicates the number of pixels to add in the left side of the image.
+                Defaults to 0.
+            right (:obj: int, optional): 
+                Integer which indicates the number of pixels to add in the right side of the image.
+                Defaults to 0.
+            borderType(:obj: string, optional): 
+                Type of border that the user wants to add to the image.
+                There are several options:
+                    - Constant: Solid border, and the user can choose color.
+                    - Reflect: The border will mirror the border elements.
+                    - Default: Quite similar to 'reflect', but with slight changes.
+                    - Replicate: Replicates the last element of the image.
+                Defaults to constant.
+            color(:obj: string, optional):
+                This param is only triggered if borderType is constant.
+                The user can choose between two colors to add:
+                    - Black
+                    - White
+                Defaults to black.
 
-    Returns:
-        :obj: array:
-            The resulting object is the image, in the same format as inputted, but with the transformation applied.
+        Returns:
+            :obj: array:
+                The resulting object is the image, in the same format as inputted, but with the transformation applied.
 
-    Raises:
-        ValueError: Raised if any of the values is negative or not expected.
-        ArgumentTypeError: Raised if any of the values is not the type that it is supposed to.
+        Raises:
+            ValueError: Raised if any of the values is negative or not expected.
+            ArgumentTypeError: Raised if any of the values is not the type that it is supposed to.
     """
 
     def _checks(img, top, bottom, left, right, borderType, color):

@@ -7,37 +7,37 @@ from ..utils.utils import intdetector, str2bool, stringdetector
 
 def isBlurry(img, strictness='high', customStrictness=None):
     """
-    This function checks if an image is blurry or not.
-    As images can have a wide spectrum of cases, both a general parameter of blurriness and a 
-    custom one has been provided so that the user can use the function in any case.
+        This function checks if an image is blurry or not.
+        As images can have a wide spectrum of cases, both a general parameter of blurriness and a 
+        custom one has been provided so that the user can use the function in any case.
 
-    Args:
-        img (:obj: array, mandatory): 
-            Image to check.
-        strictness (:obj: str, optional): 
-            Level of strictness to apply to check if the image is blurry or not.
-            The possible values are:
-                - High: Very restrictive
-                - Medium: Midly restrictive
-                - Low: Barely restrictive
-            Default is high.
-        customStrictness (:obj: int, optional):
-            As explained before, images can have a wide variety of cases that make this blurriness detector obsolete.
-            The user can input a custom value after trying some of his/her use case that fits perfectly for them.
-            If used, this parameter overrides the strictness one.
+        Args:
+            img (:obj: array, mandatory): 
+                Image to check.
+            strictness (:obj: str, optional): 
+                Level of strictness to apply to check if the image is blurry or not.
+                The possible values are:
+                    - High: Very restrictive
+                    - Medium: Midly restrictive
+                    - Low: Barely restrictive
+                Default is high.
+            customStrictness (:obj: int, optional):
+                As explained before, images can have a wide variety of cases that make this blurriness detector obsolete.
+                The user can input a custom value after trying some of his/her use case that fits perfectly for them.
+                If used, this parameter overrides the strictness one.
 
-    Returns:
-        :obj: bool:
-            The result of the function is a boolean, checking if the image is blurry or not.
-        :obj: int:
-            A second output is the value of blurriness, so that the user can know the amount of blurriness.
+        Returns:
+            :obj: bool:
+                The result of the function is a boolean, checking if the image is blurry or not.
+            :obj: int:
+                A second output is the value of blurriness, so that the user can know the amount of blurriness.
 
-    Raises:
-        ValueError: Raised if the value inputted is less than/or zero or the param is not among the accepted.
-        ArgumentTypeError: Raised if any value does not have its correct format.
+        Raises:
+            ValueError: Raised if the value inputted is less than/or zero or the param is not among the accepted.
+            ArgumentTypeError: Raised if any value does not have its correct format.
 
-    Appendix:
-        This function uses the fast fourier transform to check whether an image is blurry or not.
+        Appendix:
+            This function uses the fast fourier transform to check whether an image is blurry or not.
     """
 
     integer_types = (int)
